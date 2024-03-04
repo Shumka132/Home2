@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Добро пожаловать!</h2>
+        <form *ngIf="registrationForm" [formGroup]="registrationForm" (ngSubmit)="submitForm()">
+
+            <div *ngIf="registrationForm.get('first_name')?.invalid && registrationForm.get('first_name')?.touched" class="error-message">
+                Имя должно содержать только русские и английские буквы
+            </div>
+            <input type="text" formControlName="first_name" required placeholder="Введите имя"><br><br>
+            
+            <div *ngIf="registrationForm.get('last_name')?.invalid && registrationForm.get('last_name')?.touched" class="error-message">
+                Фамилия должна содержать только русские и английские буквы
+            </div>
+            <input type="text" formControlName="last_name" required placeholder="Введите фамилию"><br><br>
+            
+            <div *ngIf="registrationForm.get('phone_number')?.invalid && registrationForm.get('phone_number')?.touched" class="error-message">
+                Неправильный формат номера телефона
+            </div>
+            <input type="tel" formControlName="phone_number" required placeholder="Введите номер телефона"><br><br>
+            
+            <div *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched" class="error-message">
+                Неправильный формат email
+            </div>
+            <input type="email" formControlName="email" required placeholder="Введите свой email"><br><br>
+            
+            <h3>Добавьте свои интересы</h3>
+
+            <div class="interests">
+                <app-interests-list></app-interests-list>
+            </div>
+
+            <div class="button">
+                <button type="submit" [disabled]="registrationForm.invalid">Зарегистрироваться</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

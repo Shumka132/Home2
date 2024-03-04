@@ -1,0 +1,12 @@
+<form [formGroup]="interestForm" (ngSubmit)="submitForm()">
+  <div formArrayName="interests">
+    <div *ngFor="let interest of interests.controls; let i = index" [formGroupName]="i" class="interest-item">
+      <input type="text" formControlName="{{ i }}" class="interest-input" placeholder="Впишите свое хобби">
+    </div>
+  </div>
+  <div class="add-interest">
+    <button type="button" (click)="addInterest()" class="add-button">Добавить</button>
+    <button type="button" (click)="removeInterest(interests.controls.length - 1)" class="remove-button">Удалить</button>
+  </div>
+  <button type="submit" [disabled]="interestForm.invalid">Отправить</button>
+</form>
